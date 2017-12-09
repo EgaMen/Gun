@@ -1,4 +1,6 @@
-public class Thing {
+package main.java;
+
+public class Thing implements Comparable{
     private String name;
     private int weight;
     private int price;
@@ -7,6 +9,17 @@ public class Thing {
         this.weight = weight;
         this.price=price;
         this.name=name;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Thing thing = (Thing)o;
+        if(thing.getWeight()==this.weight)
+            return 0;
+        else if(thing.getWeight()>this.weight)
+            return -1;
+        else
+            return 1;
     }
 
     @Override
@@ -23,6 +36,7 @@ public class Thing {
         stringBuilder.append("\n");
         return stringBuilder.toString();
     }
+
 
     public String getName() {
         return name;
