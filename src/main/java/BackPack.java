@@ -8,14 +8,17 @@ public class BackPack {
     private List<Thing> things =new LinkedList<>();
     private int maxWeight;
     private int weight;
+    private int maxPrise;
     public BackPack(int maxWeight) {
         this.maxWeight = maxWeight;
         this.weight=maxWeight;
+        maxPrise =0;
     }
     public void add(Thing thing) {
         things.add(thing);
         weight-=thing.getWeight();
         size++;
+        maxPrise +=thing.getPrice();
     }
 
     public int getMaxWeight() {
@@ -40,5 +43,9 @@ public class BackPack {
 
     public int getSize() {
         return size;
+    }
+
+    public int getMaxPrise() {
+        return maxPrise;
     }
 }

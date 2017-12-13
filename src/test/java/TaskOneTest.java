@@ -11,10 +11,10 @@ class TaskOneTest {
     @Test
     void greedy_Default_True() {
         Thing[]things= ThingsFabric();
-        BackPack backPack = new BackPack(13);
+        BackPack backPack = new BackPack(9);
         TaskOne taskOne = new TaskOne();
         taskOne.greedy(backPack,things);
-        assertEquals(backPack.getSize(),2);
+        assertEquals(backPack.getMaxPrise(),10);
         //System.out.println(backPack.toString());
     }
 
@@ -38,6 +38,23 @@ class TaskOneTest {
         //System.out.println(backPack.toString());
         assertEquals(length,4);
         // System.out.println(backPack.toString());
+    }
+    @Test
+    void greedyMP_Default_True() {
+        Thing[]things= ThingsFabric();
+        BackPack[] backPack = new BackPack[2];
+        for(int i=0;i<backPack.length;i++)
+            backPack[i]=new BackPack(9);
+        TaskOne taskOne = new TaskOne();
+        taskOne.greedyMP(backPack, things);
+        //System.out.println(backPack.toString());
+        int cost=0;
+        for(BackPack x:backPack)
+            cost+=x.getMaxPrise();
+
+        assertEquals(cost,17);
+        // System.out.println(backPack.toString());
+
     }
 
 

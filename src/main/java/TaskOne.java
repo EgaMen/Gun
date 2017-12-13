@@ -3,6 +3,35 @@ package main.java;
 import java.util.*;
 
 public class TaskOne {
+
+    public void greedyMP(BackPack[] backPack, Thing [] things) {
+        List<Float> keys= new LinkedList<>();
+        Map<Float,Thing> unitCost = new TreeMap< Float, Thing>();
+        for (Thing thing : things) {
+            unitCost.put(1/((float) thing.getPrice() / (float) thing.getWeight()), thing);
+        }
+
+        for(BackPack x:backPack) {
+            for(Float key : unitCost.keySet()) {
+                Thing thing = unitCost.get(key);
+                if (x.getWeight() - thing.getWeight() >= 0) {
+                    x.add(thing);
+                    keys.add(key);
+                }
+            }
+
+            for(Float key:keys) {
+                unitCost.remove(key);
+            }
+            keys.removeAll(keys);
+
+
+        }
+
+
+
+    }
+
     public int bestFitDecreasing(BackPack[] backPack, Thing [] things) {
         Arrays.sort(things, Collections.reverseOrder());
         Thing thing = things[0];
